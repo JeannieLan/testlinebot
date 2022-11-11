@@ -47,7 +47,7 @@ def handle_message(event):
             result=getRecord(event.message.text,event.source.user_id)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         else:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="歡迎使用記帳Gε٩(๑> ₃ <)۶з\n輸入使用方法:\n1)新增紀錄:/addCost 項目 金額\n2)刪除紀錄:/deleteCost 時間 項目 金額\n刪除紀錄可以先查詢所有紀錄再刪除喔! \n3)查詢紀錄:/all\n4)查詢天氣:天氣 地區\n\n有空格請記得要輸入!"))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="歡迎使用記帳功能\n輸入使用方法:\n1)新增紀錄:/addCost 項目 金額\n2)刪除紀錄:/deleteCost 時間 項目 金額\n刪除紀錄可以先查詢所有紀錄再刪除喔! \n3)查詢紀錄:/all\n4)查詢天氣:天氣 地區\n\n有空格請記得要輸入!"))
         pass
 pass
 
@@ -67,7 +67,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
     
     dailyCost=msg[8:].replace('\n',' ') #replace(舊,新)是將\n轉換成空白 /addCost 吃飯 100
     try:
-       # 判斷輸入的第二位參數一定要是Int以及list的數量一定要等於三個，如果沒有也會請你重新輸入正確格式
+       # 判斷輸入的第二位參數一定要是Int以及list的數量一定要等於三個，如果沒有會請你重新輸入正確格式
        #split是用空格分開兩個str
         if (isInputCostInt(Input_data = dailyCost.split(' ')) is True) and (len(dailyCost.split(' ')) == 3):
             type_=dailyCost.split(' ')[1]
