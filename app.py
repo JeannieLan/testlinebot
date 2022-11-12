@@ -160,6 +160,7 @@ def getRecord(total_list,user_id):
         
 pass
 
+import os
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=10080)
 # 監聽所有來自 /callback 的 Post Request 
