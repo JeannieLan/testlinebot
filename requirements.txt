@@ -14,4 +14,3 @@ pyimgur
 mpl_finance 
 arrow
 gunicorn
-jinja2<3.1.0
