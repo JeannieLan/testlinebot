@@ -47,7 +47,7 @@ def handle_message(event):
             result=getRecord(event.message.text,event.source.user_id)
             line_bot_api.reply_message(event.reply_token,TextSendMessage(text=result))
         else:
-            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="歡迎使用記帳功能\n輸入使用方法:\n1)新增紀錄:/addCost 項目 金額\n2)刪除紀錄:/deleteCost 時間 項目 金額\n刪除紀錄可以先查詢所有紀錄再刪除喔! \n3)查詢紀錄:/all\n4)查詢天氣:天氣 地區\n\n有空格請記得要輸入!"))
+            line_bot_api.reply_message(event.reply_token,TextSendMessage(text="歡迎使用記帳功能\n輸入使用方法:\n1)新增紀錄:/addCost 項目 金額\n2)刪除紀錄:/deleteCost 時間 項目 金額\n刪除紀錄可以先查詢所有紀錄再刪除喔! \n3)查詢紀錄:/all\n有空格請記得要輸入!"))
         pass
 pass
 
