@@ -75,7 +75,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             
             connect = sqlite3.connect("count.db")
             cursor = connect.cursor()
-            sql="INSERT INTO count(id,time,type,money) values(?,?,'?,?)" % (user_id,timeStr,type_,money)
+            sql="INSERT INTO count(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
             cursor.execute(sql)
             connect.commit()
             cursor.close()
@@ -88,6 +88,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
         
     except Exception as e:
         #return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
+        print(e)
         return e
 pass
 
