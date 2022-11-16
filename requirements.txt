@@ -14,3 +14,4 @@ pyimgur
 mpl_finance 
 arrow
 gunicorn
+psycopg2
