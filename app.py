@@ -81,7 +81,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             cursor = connect.cursor()
             #sql="INSERT INTO count(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
             #cursor.execute(sql)
-            #connect.commit()
+            connect.commit()
             cursor.close()
             connect.close()
           
