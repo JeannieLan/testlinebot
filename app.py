@@ -1,4 +1,6 @@
 #載入LineBot所需要的模組 
+import os
+import psycopg2
 import sqlite3
 import time
 import os.path
@@ -73,7 +75,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             type_=dailyCost.split(' ')[1]
             money=dailyCost.split(' ')[2]
             
-            connect = sqlite3.connect("count.db")
+            connect = psycopg2.connect("count.db")
             cursor = connect.cursor()
             sql="INSERT INTO count(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
             cursor.execute(sql)
