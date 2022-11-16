@@ -87,7 +87,8 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 300"
         
     except Exception as e:
-        return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
+        #return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
+        return e
 pass
 
 def deleteCostRecord(msg,user_id):
