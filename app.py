@@ -122,11 +122,11 @@ def deleteCostRecord(msg,user_id):
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
                 cursor = connect.cursor()
-                sql="TRUNCATE FROM count WHERE id='%s' AND time='%s' AND type='%s' AND money='%s'" % (user_id,time,type_,money)
-                cursor.execute(sql)
-                connect.commit()
-                cursor.close()
-                connect.close()
+                #sql="TRUNCATE FROM count WHERE id='%s' AND time='%s' AND type='%s' AND money='%s'" % (user_id,time,type_,money)
+                #cursor.execute(sql)
+                #connect.commit()
+                #cursor.close()
+                #connect.close()
           
                 update_total_list=getTotalCostList()
                 
@@ -147,9 +147,9 @@ def getTotalCostList(user_id):
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
     cursor = connect.cursor()
-    sql="SELECT time, type, money FROM count WHERE id='%s'" % (user_id)
-    cursor.execute(sql)
-    connect.commit()
+    #sql="SELECT time, type, money FROM count WHERE id='%s'" % (user_id)
+    #cursor.execute(sql)
+    #connect.commit()
     
     rows = cursor.fetchall()
     
