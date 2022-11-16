@@ -79,8 +79,9 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
 						port="5432")
 
             cursor = connect.cursor()
-            #sql="INSERT INTO count(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
-            #cursor.execute(sql)
+            cursor.execute("CREATE TABLE userdata (id serial PRIMARY KEY, name VARCHAR(50), userid VARCHAR(50));")      
+            sql="INSERT INTO userdata(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
+            cursor.execute(sql)
             connect.commit()
             cursor.close()
             connect.close()
@@ -122,9 +123,9 @@ def deleteCostRecord(msg,user_id):
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
                 cursor = connect.cursor()
-                sql="TRUNCATE FROM count WHERE id='%s' AND time='%s' AND type='%s' AND money='%s'" % (user_id,time,type_,money)
+                sql="TRUNCATE FROM userdata WHERE id='%s' AND time='%s' AND type='%s' AND money='%s'" % (user_id,time,type_,money)
                 cursor.execute(sql)
-                #connect.commit()
+                connect.commit()
                 cursor.close()
                 connect.close()
           
@@ -147,9 +148,9 @@ def getTotalCostList(user_id):
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
     cursor = connect.cursor()
-    sql="SELECT time, type, money FROM count WHERE id='%s'" % (user_id)
+    sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
     cursor.execute(sql)
-    #connect.commit()
+    connect.commit()
     
     rows = cursor.fetchall()
     
