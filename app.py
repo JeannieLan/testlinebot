@@ -66,10 +66,10 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
     timeStr = time.strftime('%Y/%m/%d', time.localtime(time.time()))
     
     dailyCost=msg[8:].replace('\n',' ') #replace(舊,新)是將\n轉換成空白 /addCost 吃飯 100
-    try:
+    #try:
        # 判斷輸入的第二位參數一定要是Int以及list的數量一定要等於三個，如果沒有會請你重新輸入正確格式
        #split是用空格分開兩個str
-        if (isInputCostInt(Input_data = dailyCost.split(' ')) is True) and (len(dailyCost.split(' ')) == 3):
+    if (isInputCostInt(Input_data = dailyCost.split(' ')) is True) and (len(dailyCost.split(' ')) == 3):
             type_=dailyCost.split(' ')[1]
             money=dailyCost.split(' ')[2]
             
@@ -82,13 +82,13 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             connect.close()
           
             return "[新增紀錄][{}] \n花費項目:{},金額:{}".format(timeStr, dailyCost.split(' ')[1], dailyCost.split(' ')[2])
-        else:
+    else:
               
             return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 300"
         
-    except Exception as e:
+    #except Exception as e:
         #return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
-        return e
+     #   return e
 pass
 
 def deleteCostRecord(msg,user_id):
