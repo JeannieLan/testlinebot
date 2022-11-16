@@ -80,8 +80,8 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
 
             cursor = connect.cursor()
             cursor.execute("CREATE TABLE userdata (id serial PRIMARY KEY, name VARCHAR(50), userid VARCHAR(50));")      
-            sql="INSERT INTO userdata(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
-            cursor.execute(sql)
+            #sql="INSERT INTO userdata(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
+            #cursor.execute(sql)
             connect.commit()
             cursor.close()
             connect.close()
@@ -148,11 +148,13 @@ def getTotalCostList(user_id):
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
     cursor = connect.cursor()
-    sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
-    cursor.execute(sql)
+    cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
+
+    #sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
+    #cursor.execute(sql)
     connect.commit()
     
-    rows = cursor.fetchall()
+    rows = cursor.fetchall() #讀出所有資料
     
     row = np.array(rows)
     
