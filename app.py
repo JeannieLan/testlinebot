@@ -74,7 +74,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             type_=dailyCost.split(' ')[1]
             money=dailyCost.split(' ')[2]
             
-            conn = psycopg2.connect(database="dfvgh96qfsmap0",
+            connect = psycopg2.connect(database="dfvgh96qfsmap0",
 						user="blzridtndxgkug",
 						password="26c452163d37e5088344595a4e8c6b5258bc7dcf2c09bb17a724d864bc459f72",
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
@@ -83,12 +83,12 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
 
 
             #connect = sqlite3.connect("count.db")
-            #cursor = connect.cursor()
-            #sql="INSERT INTO count(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
-            #cursor.execute(sql)
-            #connect.commit()
-            #cursor.close()
-            #connect.close()
+            cursor = connect.cursor()
+            sql="INSERT INTO count(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
+            cursor.execute(sql)
+            connect.commit()
+            cursor.close()
+            connect.close()
           
             return "[新增紀錄][{}] \n花費項目:{},金額:{}".format(timeStr, dailyCost.split(' ')[1], dailyCost.split(' ')[2])
         else:
@@ -96,9 +96,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 300"
         
     except Exception as e:
-        #return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
-        print(e)
-        return e
+        return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
 pass
 
 def deleteCostRecord(msg,user_id):
@@ -123,7 +121,11 @@ def deleteCostRecord(msg,user_id):
             count+=1
             
             if isDeleteRecord is True:
-                connect = sqlite3.connect("count.db")
+                connect = psycopg2.connect(database="dfvgh96qfsmap0",
+						user="blzridtndxgkug",
+						password="26c452163d37e5088344595a4e8c6b5258bc7dcf2c09bb17a724d864bc459f72",
+						host="ec2-54-174-31-7.compute-1.amazonaws.com",
+						port="5432")
                 cursor = connect.cursor()
                 sql="TRUNCATE FROM count WHERE id='%s' AND time='%s' AND type='%s' AND money='%s'" % (user_id,time,type_,money)
                 cursor.execute(sql)
@@ -144,7 +146,11 @@ def deleteCostRecord(msg,user_id):
 
 
 def getTotalCostList(user_id):
-    connect = sqlite3.connect("count.db")
+    connect = psycopg2.connect(database="dfvgh96qfsmap0",
+						user="blzridtndxgkug",
+						password="26c452163d37e5088344595a4e8c6b5258bc7dcf2c09bb17a724d864bc459f72",
+						host="ec2-54-174-31-7.compute-1.amazonaws.com",
+						port="5432")
     cursor = connect.cursor()
     sql="SELECT time, type, money FROM count WHERE id='%s'" % (user_id)
     cursor.execute(sql)
