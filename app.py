@@ -1,6 +1,4 @@
 #載入LineBot所需要的模組 
-import os
-import psycopg2
 import sqlite3
 import time
 import os.path
