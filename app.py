@@ -147,10 +147,10 @@ def getTotalCostList(user_id):
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
     cursor = connect.cursor()
-    #cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
-    "SELECT * FROM userdata;"
+    cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
+    #"SELECT * FROM userdata;"
     sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
-    #cursor.execute(sql)
+    cursor.execute(sql)
     connect.commit()
     
     rows = cursor.fetchall() #讀出所有資料
