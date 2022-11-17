@@ -128,8 +128,7 @@ def deleteCostRecord(msg,user_id):
                 cursor.close()
                 connect.close()
           
-                #update_total_list=getTotalCostList()
-                update_total_list=getTotalCostList(user_id)
+                update_total_list=getTotalCostList()
                 
                 return "[刪除項目][{}]\n%s".format(deleteCost) % '刪除後的所有的紀錄:\n%s' % '\n'.join('%s' % a for a in total_list)
             else:
@@ -147,6 +146,7 @@ def getTotalCostList(user_id):
 						password="26c452163d37e5088344595a4e8c6b5258bc7dcf2c09bb17a724d864bc459f72",
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
+    "CREATE TABLE userdata (id serial PRIMARY KEY, name VARCHAR(50), userid VARCHAR(50)); "
     cursor = connect.cursor()
     #cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
     "SELECT * FROM userdata;"
