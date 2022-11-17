@@ -149,7 +149,7 @@ def getTotalCostList(user_id):
     "CREATE TABLE userdata (id serial PRIMARY KEY, name VARCHAR(50), userid VARCHAR(50)); "
     cursor = connect.cursor()
     #cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
-    "SELECT * FROM userdata;"
+    "SELECT * FROM userdata.name;"
     sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
     cursor.execute(sql)
     connect.commit()
