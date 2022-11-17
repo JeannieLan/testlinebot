@@ -14,8 +14,6 @@ line_bot_api = LineBotApi('6rEFES/spFG3K7H3CK0q7Kn+pfD3zr+cljnFX0WsedUnjqEja9Bat
 # 必須放上自己的Channel Secret
 handler = WebhookHandler('d77805be5e4c58ab1d6b084a62d99158')
 
-line_bot_api.push_message('U59382c25fdcba8e44ea029bd7075838c', TextSendMessage(text='你可以開始了'))
-
 @app.route("/callback", methods=['POST'])
 def callback():
     # get X-Line-Signature he
