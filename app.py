@@ -148,11 +148,11 @@ def getTotalCostList(user_id):
 						port="5432")
     "CREATE TABLE userdata (id serial PRIMARY KEY, time VARCHAR(50) ,type VARCHAR(50), money VARCHAR(50)); "
     cursor = connect.cursor()
-    #cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
+    cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
     #"SELECT * FROM userdata;"
-    sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
+    #sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
     #cursor.execute(sql)
-    #connect.commit()
+    connect.commit()
     
     rows = cursor.fetchall() #讀出所有資料
     
