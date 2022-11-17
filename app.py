@@ -152,7 +152,7 @@ def getTotalCostList(user_id):
     #"SELECT * FROM userdata;"
     sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
     #cursor.execute(sql)
-    connect.commit()
+    #connect.commit()
     
     rows = cursor.fetchall() #讀出所有資料
     
