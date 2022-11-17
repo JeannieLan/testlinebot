@@ -77,7 +77,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
 						port="5432")
 
             cursor = connect.cursor()
-            cursor.execute("CREATE TABLE userdata (id serial PRIMARY KEY, name VARCHAR(50), userid VARCHAR(50));")      
+            #cursor.execute("CREATE TABLE userdata (id serial PRIMARY KEY, name VARCHAR(50), userid VARCHAR(50));")      
             #sql="INSERT INTO userdata(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
             #cursor.execute(sql)
             connect.commit()
