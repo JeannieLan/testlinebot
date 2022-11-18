@@ -62,7 +62,7 @@ pass
 def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會return結果到handle_message
     timeStr = time.strftime('%Y/%m/%d', time.localtime(time.time()))
     
-    dailyCost=msg[8:].replace('\n',' ') #replace(舊,新)是將\n轉換成空白 /addCost 吃飯 100
+    dailyCost=msg[8:].replace('\n',' ') 
     try:
        # 判斷輸入的第二位參數一定要是Int以及list的數量一定要等於三個，如果沒有會請你重新輸入正確格式
        #split是用空格分開兩個str
@@ -91,7 +91,9 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
             return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 300"
         
     except Exception as e:
-        return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
+        #return "你輸入的格式有錯誤喔! \n請輸入:/addCost 項目 金錢 \n例如:/addCost 吃飯 30"
+        print(e)
+        return "程式執行發生錯誤"
 pass
 
 def deleteCostRecord(msg,user_id):
@@ -149,9 +151,8 @@ def getTotalCostList(user_id):
     "CREATE TABLE userdata (id serial PRIMARY KEY, time VARCHAR(50) ,type VARCHAR(50), money VARCHAR(50)); "
     cursor = connect.cursor()
     cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
-    #"SELECT * FROM userdata;"
-    #sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
-    #cursor.execute(sql)
+    sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
+    cursor.execute(sql)
     connect.commit()
     
     rows = cursor.fetchall() #讀出所有資料
