@@ -78,7 +78,7 @@ def inputAddRecord(msg,user_id): #這邊變數是輸入的訊息=記帳,會retur
 
             cursor = connect.cursor()
             #cursor.execute("CREATE TABLE userdata (id serial PRIMARY KEY, time VARCHAR(50) ,name VARCHAR(50), userid VARCHAR(50));")    
-            "CREATE TABLE userdata (id serial PRIMARY KEY, time VARCHAR(50) ,type VARCHAR(50), money VARCHAR(50));  "
+            "CREATE TABLE userdata (id serial PRIMARY KEY, time DATE ,type VARCHAR(50), money VARCHAR(50));  "
             sql="INSERT INTO userdata(id,time,type,money) values('%s','%s','%s','%s')" % (user_id,timeStr,type_,money)
             cursor.execute(sql)
             connect.commit()
@@ -148,7 +148,7 @@ def getTotalCostList(user_id):
 						password="26c452163d37e5088344595a4e8c6b5258bc7dcf2c09bb17a724d864bc459f72",
 						host="ec2-54-174-31-7.compute-1.amazonaws.com",
 						port="5432")
-    "CREATE TABLE userdata (id serial PRIMARY KEY, time VARCHAR(50) ,type VARCHAR(50), money VARCHAR(50)); "
+    "CREATE TABLE userdata (id serial PRIMARY KEY, time DATE ,type VARCHAR(50), money VARCHAR(50)); "
     cursor = connect.cursor()
     cursor.execute("SELECT * FROM userdata;")#選擇資料表userdata
     sql="SELECT time, type, money FROM userdata WHERE id='%s'" % (user_id)
