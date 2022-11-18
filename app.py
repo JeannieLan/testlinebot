@@ -1,11 +1,12 @@
-import psycopg2
-import time
 import os.path
 import sys
+import time
+
 import numpy as np
-from flask import Flask, request, abort  
-from linebot import (LineBotApi, WebhookHandler) 
-from linebot.exceptions import (InvalidSignatureError) 
+import psycopg2
+from flask import Flask, abort, request
+from linebot import LineBotApi, WebhookHandler
+from linebot.exceptions import InvalidSignatureError
 from linebot.models import *
 
 app = Flask(__name__)  
@@ -177,6 +178,7 @@ def getRecord(total_list,user_id):
 pass
 
 import os
+
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=10080)
 # 監聽所有來自 /callback 的 Post Request 
